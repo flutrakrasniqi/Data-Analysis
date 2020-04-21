@@ -12,13 +12,13 @@ https://raw.githubusercontent.com/luketudge/stats-tutorials/master/tutorials/dat
 
 Write a Python program that produces an analysis of these data. Your program should print some
 numerical summaries and produce a plot:
-• Summary statistics of the kill ratings for each type of bug:
-◦ minimum
-◦ maximum
-◦ median
-◦ mean
-◦ Standard Deviation
-• The results of a linear model with kill rating as the outcome variable and the categories of
+- Summary statistics of the kill ratings for each type of bug:
+  - minimum
+  - maximum
+  - median
+  - mean
+  - Standard Deviation
+- The results of a linear model with kill rating as the outcome variable and the categories of
 bug as the predictor variables.
-• Boxplots with overlaid points showing the distribution of kill ratings for each category of
+- Boxplots with overlaid points showing the distribution of kill ratings for each category of
 bug. Try to recreate the main features of the plot shown below.
