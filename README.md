@@ -140,7 +140,9 @@ We can now continue to use them in our linear model. But first, we split our dat
 
 We split the data by using train_test_split() from sklearn.model_selection. Here the first parameter represents the datasets you're selecting to use (predictors and outcome); the second parameter sets the size of the testing dataset, and about a third one: random_state, we set it to some fixed number since want reproducible results (if we do not use a randomstate , every time we make the split/run the program we might get a different set of train and test data points).
 > X = embarked_dummies
+
 > y = df[outcome]
+
 > X_train,X_test,y_train,y_test = train_test_split(X, y, test_size = .20, random_state=1)
 
 
