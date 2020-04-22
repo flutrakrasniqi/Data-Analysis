@@ -95,13 +95,53 @@ Often one of the first steps when analyzing some new data is to get an idea of t
 If we want to apply multiple aggregation functions, then it is a little clearer to first gather the functions in a list variable, and then pass this list variable into the aggregate() method. 
 ```python
 from statistics import median, mean, stdev
-
-summary_stats = [min, median, mean, stdev
+summary_stats = [min, median, mean, stdev, max]
 ```
 
 So, let’s check the summary statistics of the kill ratings (our outcome):
 ```python
 summary = df.aggregate({outcome: summary_stats})
+summary
 ```
+
+Since we want this information separately for each category of bug, we need a ’grouped summary’.
+
+pandas makes grouping our data pretty easy. The groupby() method groups the rows of a data frame according to the categories in one or more columns. The first argument is a list of column names to group by.
+
+```python
+summary = df.groupby(['bug_category']).aggregate({outcome: summary_stats})
+```
+
+## Linear model
+
+To model the relationship between our dependent variable/ outcome (kill rating) and independent variables (categories of bugs) we are going to use the linear regression model. The regression can only use numerical variable as its inputs data. Due to this, the categorical variables need to be encoded as dummy variables. Dummy coding encodes the categorical variables as 0 and 1 respectively if the observation does not or does belong to the group.
+
+This encoding can easily be done with pandas.get_dummies(), where the first argument specifies data of which to get dummy indicators.
+
+In linear regression with categorical variables we should be careful of the Dummy Variable Trap. The Dummy Variable trap is a scenario in which the independent variables are multicollinear - a scenario in which two or more variables are highly correlated; in simple terms one variable can be predicted from the others. This can produce singularity of a model, meaning your model just won't work. 
+
+Idea is to use dummy variable encoding with the argument drop_first=True; this will omit one column after converting categorical variable into dummy/indicator variables. We will not lose any relevant information by doing that simply because your all point in dataset can fully be explained by rest of the features.
+
+```python
+embarked_dummies=pandas.get_dummies(df.bug_category, drop_first=True)
+```
+
+Now we join these dummy variables columns with the main dataset, using pandas.concat(). The first argument here is a list of datasets that we want to join, and the axis to concatenate along:
+```python
+df = pandas.concat([df, embarked_dummies], axis=1)
+```
+
+This is how our df looks now:
+```python
+df
+```
+
+We can now continue to use them in our linear model. But first, we split our data frame into two sets. We will do this by using four fifths of the data for the model fitting (the so-called 'training' data), and reserving the remaining fifth as the imagined new data against which we will test the fitted models' predictions (the so-called 'test' data).
+
+We split the data by using train_test_split() from sklearn.model_selection. Here the first parameter represents the datasets you're selecting to use (predictors and outcome); the second parameter sets the size of the testing dataset, and about a third one: random_state, we set it to some fixed number since want reproducible results (if we do not use a randomstate , every time we make the split/run the program we might get a different set of train and test data points).
+> X = embarked_dummies
+> y = df[outcome]
+> X_train,X_test,y_train,y_test = train_test_split(X, y, test_size = .20, random_state=1)
+
 
 
