@@ -39,4 +39,10 @@ Let's import pandas and use its read_csv() function to read this file:
 import pandas
 df = pandas.read_csv(url)
 ```
-
+Taking into account that we may mistakenly give a wrong url, file we should raise an error that will stop the program and inform us that the url file is not found:
+```python
+try:
+    df = pandas.read_csv(url)
+except IOError:
+    raise FileNotFoundError('URL is not found!')
+```
