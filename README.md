@@ -184,6 +184,22 @@ This is how our df looks now:
 df
 ```
 
+```
+Subject	Sex	Disgust	Fear	KillRating	bug_category	2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear	2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear	2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear
+0	1	Female	low	low	6.0	1. Low Disgust and Low Fear	0	0	0	0	0	0	0	0	0
+1	3	Female	low	low	5.0	1. Low Disgust and Low Fear	0	0	0	0	0	0	0	0	0
+2	4	Female	low	low	6.0	1. Low Disgust and Low Fear	0	0	0	0	0	0	0	0	0
+3	5	Female	low	low	3.0	1. Low Disgust and Low Fear	0	0	0	0	0	0	0	0	0
+4	6	Female	low	low	2.0	1. Low Disgust and Low Fear	0	0	0	0	0	0	0	0	0
+...	...	...	...	...	...	...	...	...	...	...	...	...	...	...	...
+343	96	Male	high	high	10.0	4. High Disgust and High Fear	0	0	1	0	0	1	0	0	1
+344	97	Female	high	high	10.0	4. High Disgust and High Fear	0	0	1	0	0	1	0	0	1
+345	98	Female	high	high	10.0	4. High Disgust and High Fear	0	0	1	0	0	1	0	0	1
+346	99	Female	high	high	10.0	4. High Disgust and High Fear	0	0	1	0	0	1	0	0	1
+347	100	Female	high	high	3.0	4. High Disgust and High Fear	0	0	1	0	0	1	0	0	1
+348 rows × 15 columns
+```
+
 We can now continue to use them in our linear model. But first, we split our data frame into two sets. We will do this by using four fifths of the data for the model fitting (the so-called 'training' data), and reserving the remaining fifth as the imagined new data against which we will test the fitted models' predictions (the so-called 'test' data).
 
 We split the data by using train_test_split() from sklearn.model_selection. Here the first parameter represents the datasets you're selecting to use (predictors and outcome); the second parameter sets the size of the testing dataset, and about a third one: random_state, we set it to some fixed number since want reproducible results (if we do not use a randomstate , every time we make the split/run the program we might get a different set of train and test data points).
