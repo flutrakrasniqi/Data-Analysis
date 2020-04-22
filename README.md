@@ -299,7 +299,8 @@ bp = sns.stripplot(x=predictor1, y=outcome, hue=predictor2, data=df,
                    jitter=True, dodge=True, linewidth=1, palette = our_palette)
 ```
 
-And this is the plot that we get: <br /> IMAGE
+And this is the plot that we get: 
+![](image/graph.png)
 
 After we have plotted the data, if we want to add grid for both axis and customize the y axis grid so it shows lines for each (every 1) integer, we execute the following code:
 ```python
