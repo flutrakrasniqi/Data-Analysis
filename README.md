@@ -23,9 +23,19 @@ bug as the predictor variables.
 - Boxplots with overlaid points showing the distribution of kill ratings for each category of
 bug. Try to recreate the main features of the plot shown below.
 
-#Load data
+##Load data
 
 url = https://raw.githubusercontent.com/luketudge/stats-tutorials/master/tutorials/data/bugs.csv
 
 We save our url file into a variable. This file stores a table of data on the desire of subjects to kill a bug. Each row represents one bug, with the following columns:
+- Subject: An ID code for the person rating their desire to kill the bug
+- Sex: The sex of the subject.
+- Disgust: The level of how disgusting is the bug (low/high).
+- Fear: The level of how frightening is the bug (low/high).
+- KillRating: The subject’s desire to kill the bug (1-10).
 
+Let's import pandas and use its read_csv() function to read this file:
+'''python
+>>>import pandas
+>>>df = pandas.read_csv(url)
+'''
