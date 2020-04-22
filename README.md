@@ -185,7 +185,7 @@ df
 ```
 
 ```
-Subject	Sex	Disgust	Fear	KillRating	bug_category	2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear	2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear	2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear
+Subject	Sex	Disgust	Fear	KillRating	bug_category		       2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear	2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear	2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear
 0	1	Female	low	low	6.0	1. Low Disgust and Low Fear	0	0	0	0	0	0	0	0	0
 1	3	Female	low	low	5.0	1. Low Disgust and Low Fear	0	0	0	0	0	0	0	0	0
 2	4	Female	low	low	6.0	1. Low Disgust and Low Fear	0	0	0	0	0	0	0	0	0
