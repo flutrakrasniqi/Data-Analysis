@@ -205,3 +205,35 @@ bp = sns.boxplot(x=predictor1, y=outcome, hue=predictor2, data=df,
 To add the overlaid points that show the distribution of kill ratings for each category of bug, we use another method from seaborn called stripplot(). Except the common parameters, here we also specify:
 
 > itter=True: to add some random noise (“jitter”) to the discrete values to make the distribution of those values clearer; <br /> dodge = True: to separate the strips for different hue levels along the categorical axis; and <br /> linewidth = 1: to add gray lines that frame the points, since were using the same palette as for the boxes.
+```python
+bp = sns.stripplot(x=predictor1, y=outcome, hue=predictor2, data=df,
+                   jitter=True, dodge=True, linewidth=1, palette = our_palette)
+```
+
+And this is the plot that we get: <br /> IMAGE
+
+After we have plotted the data, if we want to add grid for both axis and customize the y axis grid so it shows lines for each (every 1) integer, we execute the following code:
+```python
+from matplotlib.ticker import MultipleLocator
+bp.grid(True, which='major')
+bp.yaxis.set_major_locator(MultipleLocator(1))
+```
+
+To specify the locator which is the argument that set_major_locator() accepts, we need to import MultipleLocator() from matplotlib.ticker. The parameter in MultipleLocator specifies after how many units a major will show up.
+
+Other details that we can handle regarding the plot are the y axis label which would we clearer if it shows ‘Desire to kill’, and also the legend where we have doubled handles and labels.
+
+To make the clearer y axis label we use pyplot and execute:
+```python
+plt.ylabel('Desire to kill')
+```
+
+To deal with the legend, we use pyplot as well but first we get the legend’s handles and labels from the plot and save them as variables:
+```python
+handles, labels = bp.get_legend_handles_labels()
+```
+
+Next, we use the legend method from pyplot to kind of build a new legend, where we specify:
+>handles[0:2] – we only want the first 2 handles to show; labels[0:2] – we want only the first 2 labels to show; <br />
+loc=2 – we place the legend on the upper left corner; bbox_to_anchor=(x,y) – in conjunction with loc places the legend on x and y axis, giving a great degree of control for manual legend placement; <br />
+Frameon=False – to get rid of the legends frame; and title=predictor2.
