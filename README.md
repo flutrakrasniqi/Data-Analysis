@@ -185,7 +185,7 @@ df
 ```
 
 ```
-Subject	Sex	Disgust	Fear	KillRating	bug_category		       2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear	
+Subject	Sex	Disgust	Fear	KillRating	bug_category		        2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear	
 0	1	Female	low	low	6.0	1. Low Disgust and Low Fear	0				0			0
 1	3	Female	low	low	5.0	1. Low Disgust and Low Fear	0				0			0
 2	4	Female	low	low	6.0	1. Low Disgust and Low Fear	0				0			0
@@ -222,6 +222,10 @@ The oretically linear regression model basically finds the best value for the in
 print('Intercept: ', reg.intercept_)
 print('Coefficients: ', reg.coef_)
 ```
+```
+Intercept:  5.691780821917809
+Coefficients:  [1.43321918 0.95107632 2.13216284]
+```
 
 After we have trained our model, we can make predictions on the test data by using the method predict(). This accepts one argument; the new data concerning the predictors (in our case the data that we split to test out model):
 ```python
@@ -233,7 +237,24 @@ The y_pred is an array that contains all the predicted values for the input valu
 Now we can compare the actual outcome’s values and the predicted ones:
 ```python
 df1 = pandas.DataFrame({'Actual': y_test, 'Predicted': y_pred})
+```
+```
 df1
+```
+```
+	actual	Predicted
+85	9.0	5.691781
+191	8.5	6.642857
+107	10.0	7.125000
+105	4.5	7.125000
+123	2.0	7.125000
+...	...	...
+347	3.0	7.823944
+92	10.0	7.125000
+29	4.5	5.691781
+58	2.0	5.691781
+192	5.0	6.642857
+70 rows × 2 columns
 ```
 
 And we can also evaluate the performance of our model by finding the values of Mean squared error and R squared. Do to this, from sklearn.metrics, we import mean_squared_error, r2_score methods which as arguments take the actual outcome values and the predicted outcome values:
@@ -241,6 +262,10 @@ And we can also evaluate the performance of our model by finding the values of M
 from sklearn.metrics import mean_squared_error, r2_score
 print('Mean squared error: ', mean_squared_error(y_test, y_pred))
 print('R2:', r2_score(y_test,y_pred))
+```
+```
+Mean squared error:  7.847481505967478
+R2: 0.08544037628158796
 ```
 
 So in this model the average squared difference between the estimated values and true values of kill ratings is about 8 numbers and the model explains only 8% of the variation on kill ratings.
