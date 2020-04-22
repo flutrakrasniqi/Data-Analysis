@@ -22,3 +22,10 @@ numerical summaries and produce a plot:
 bug as the predictor variables.
 - Boxplots with overlaid points showing the distribution of kill ratings for each category of
 bug. Try to recreate the main features of the plot shown below.
+
+#Load data
+
+url = https://raw.githubusercontent.com/luketudge/stats-tutorials/master/tutorials/data/bugs.csv
+
+We save our url file into a variable. This file stores a table of data on the desire of subjects to kill a bug. Each row represents one bug, with the following columns:
+
