@@ -36,3 +36,6 @@ We save our url file into a variable. This file stores a table of data on the de
 
 Let's import pandas and use its read_csv() function to read this file:
 
+'''python
+>import pandas
+'''
