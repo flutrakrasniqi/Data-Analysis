@@ -23,7 +23,7 @@ bug as the predictor variables.
 - Boxplots with overlaid points showing the distribution of kill ratings for each category of
 bug. Try to recreate the main features of the plot shown below.
 
-##Load data
+#Load data
 
 url = https://raw.githubusercontent.com/luketudge/stats-tutorials/master/tutorials/data/bugs.csv
 
@@ -35,7 +35,4 @@ We save our url file into a variable. This file stores a table of data on the de
 - KillRating: The subject’s desire to kill the bug (1-10).
 
 Let's import pandas and use its read_csv() function to read this file:
-'''python
->>>import pandas
->>>df = pandas.read_csv(url)
-'''
+
