@@ -50,6 +50,22 @@ except IOError:
 ```python
 df
 ```
+```
+     Subject     Sex Disgust  Fear  KillRating
+0          1  Female     low   low         6.0
+1          3  Female     low   low         5.0
+2          4  Female     low   low         6.0
+3          5  Female     low   low         3.0
+4          6  Female     low   low         2.0
+..       ...     ...     ...   ...         ...
+343       96    Male    high  high        10.0
+344       97  Female    high  high        10.0
+345       98  Female    high  high        10.0
+346       99  Female    high  high        10.0
+347      100  Female    high  high         3.0
+
+[348 rows x 5 columns]
+```
 ## Preparing the data
 
 Before proceeding to analyze the data let’s first define our variables in terms of predictors and outcome, in order to make our program more flexible. In the experiment the kill rating supposedly depends on the category of bug which is determined by its level of disgust and fear. So, we have:
