@@ -152,9 +152,9 @@ summary = df.groupby(['bug_category']).aggregate({outcome: summary_stats})
 ```
 ```
 	                            KillRating
-                              min  median	mean	    stdev	    max
+                              	min  	 median   mean	        stdev	        max
 bug_category					
-1. Low Disgust and Low Fear	  0.0	 6.0	  5.632184	2.680094	10.0
+1. Low Disgust and Low Fear	0.0	 6.0	  5.632184	2.680094	10.0
 2. Low Disgust and High Fear	0.5	 8.0	  7.339080	2.551213	10.0
 3. High Disgust and Low Fear	0.0	 7.5	  6.660920	3.151683	10.0
 4. High Disgust and High Fear	0.0	 8.5	  7.804598	2.495760	10.0
