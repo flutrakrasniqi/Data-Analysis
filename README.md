@@ -23,7 +23,7 @@ bug as the predictor variables.
 - Boxplots with overlaid points showing the distribution of kill ratings for each category of
 bug. Try to recreate the main features of the plot shown below.
 
-#Load data
+## Load data
 
 url = https://raw.githubusercontent.com/luketudge/stats-tutorials/master/tutorials/data/bugs.csv
 
