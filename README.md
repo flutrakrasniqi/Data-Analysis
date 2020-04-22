@@ -204,4 +204,4 @@ bp = sns.boxplot(x=predictor1, y=outcome, hue=predictor2, data=df,
 
 To add the overlaid points that show the distribution of kill ratings for each category of bug, we use another method from seaborn called stripplot(). Except the common parameters, here we also specify:
 
-> itter=True: to add some random noise (“jitter”) to the discrete values to make the distribution of those values clearer;__ dodge = True: to separate the strips for different hue levels along the categorical axis; and__ linewidth = 1: to add gray lines that frame the points, since were using the same palette as for the boxes.
+> itter=True: to add some random noise (“jitter”) to the discrete values to make the distribution of those values clearer; <br /> dodge = True: to separate the strips for different hue levels along the categorical axis; and <br /> linewidth = 1: to add gray lines that frame the points, since were using the same palette as for the boxes.
