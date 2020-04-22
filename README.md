@@ -35,5 +35,8 @@ We save our url file into a variable. This file stores a table of data on the de
 - KillRating: The subject’s desire to kill the bug (1-10).
 
 Let's import pandas and use its read_csv() function to read this file:
-
+'''
+import pandas
+df = pandas.read_csv(url)
+'''
 
