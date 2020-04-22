@@ -104,6 +104,21 @@ This is what df includes now:
 ```python
 df
 ```
+```
+	Subject	Sex	Disgust	Fear	KillRating
+0	1	Female	low	low	6.0
+1	3	Female	low	low	5.0
+2	4	Female	low	low	6.0
+3	5	Female	low	low	3.0
+4	6	Female	low	low	2.0
+...	...	...	...	...	...
+343	96	Male	high	high	10.0
+344	97	Female	high	high	10.0
+345	98	Female	high	high	10.0
+346	99	Female	high	high	10.0
+347	100	Female	high	high	3.0
+348 rows × 5 columns
+```
 ## Summary statistics
 
 Often one of the first steps when analyzing some new data is to get an idea of the spread or 'distribution' of the different values in each column. We might want to know what the lowest and highest values are, what the most common values are, and so on Summarizing multiple values in one number is also known as 'aggregating' the values. The aggregate() method of a pandas.DataFrame returns a new shorter data frame containing only aggregated values. The first argument to aggregate() specifies what function or functions to use to aggregate the data.
@@ -117,7 +132,15 @@ summary_stats = [min, median, mean, stdev, max]
 So, let’s check the summary statistics of the kill ratings (our outcome):
 ```python
 summary = df.aggregate({outcome: summary_stats})
-summary
+print(summary)
+```
+```
+        KillRating
+min       0.000000
+median    7.500000
+mean      6.859195
+stdev     2.840425
+max      10.000000
 ```
 
 Since we want this information separately for each category of bug, we need a ’grouped summary’.
@@ -126,6 +149,15 @@ pandas makes grouping our data pretty easy. The groupby() method groups the rows
 
 ```python
 summary = df.groupby(['bug_category']).aggregate({outcome: summary_stats})
+```
+```
+	                            KillRating
+                              min  median	mean	    stdev	    max
+bug_category					
+1. Low Disgust and Low Fear	  0.0	 6.0	  5.632184	2.680094	10.0
+2. Low Disgust and High Fear	0.5	 8.0	  7.339080	2.551213	10.0
+3. High Disgust and Low Fear	0.0	 7.5	  6.660920	3.151683	10.0
+4. High Disgust and High Fear	0.0	 8.5	  7.804598	2.495760	10.0
 ```
 
 ## Linear model
