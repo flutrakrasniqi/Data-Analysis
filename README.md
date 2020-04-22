@@ -74,4 +74,5 @@ Now we want to apply this function to each row and save its results into new col
 df['bug_category'] = df.apply (label_bug, axis=1)
 ```
 Now we can also drop rows that have missing values in our new column since it doesn’t make much sense to keep a row that doesn’t contain the predictors value. However, statistically I am not sure if this is the right thing to do.
+
 `df.dropna()` removes the rows (specified by the argument: axis=0) that have missing values in one column (specified by: subset=[‘bug_category’]).
