@@ -237,3 +237,9 @@ Next, we use the legend method from pyplot to kind of build a new legend, where 
 >handles[0:2] – we only want the first 2 handles to show; labels[0:2] – we want only the first 2 labels to show; <br />
 loc=2 – we place the legend on the upper left corner; bbox_to_anchor=(x,y) – in conjunction with loc places the legend on x and y axis, giving a great degree of control for manual legend placement; <br />
 Frameon=False – to get rid of the legends frame; and title=predictor2.
+```python
+lg = plt.legend(handles[0:2], labels[0:2], loc=2,
+           bbox_to_anchor=(1, .5), frameon=False, title=predictor2)
+```
+
+IMAGE
