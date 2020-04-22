@@ -47,7 +47,7 @@ except IOError:
     raise FileNotFoundError('URL is not found!')
 ```
 
-```jupyter notebook
+```python
 df
 ```
 ## Preparing the data
