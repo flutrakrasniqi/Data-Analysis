@@ -332,4 +332,4 @@ lg = plt.legend(handles[0:2], labels[0:2], loc=2,
            bbox_to_anchor=(1, .5), frameon=False, title=predictor2)
 ```
 
-<img src="image/graph_final.png" width="625" height="500" >
+![](image/graph_final.png)
