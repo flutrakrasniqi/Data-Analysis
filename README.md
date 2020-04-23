@@ -71,9 +71,11 @@ df
 ## Preparing the data
 
 Before proceeding to analyze the data let’s first define our variables in terms of predictors and outcome, in order to make our program more flexible. In the experiment the kill rating supposedly depends on the category of bug which is determined by its level of disgust and fear. So, we have:
-- predictor1 = 'Disgust'
-- predictor2 = 'Fear'
-- outcome = 'KillRating'.
+```python
+predictor1 = 'Disgust'
+predictor2 = 'Fear'
+outcome = 'KillRating'.
+```
 
 This way, if in the future we want to make changes, we don’t have to find each place where the variables are written in the program to rewrite them.
 As mentioned above the kill rating is supposed to depend on the category of the bug. So, we want to have a new column indicating the bugs category. 
