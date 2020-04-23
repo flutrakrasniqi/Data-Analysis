@@ -1,7 +1,10 @@
 # Contents
-- Load data
-- Preparing the data
-- Summary statistics
+- [Load data](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#load-data)
+- [Preparing the data](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#preparing-the-data)
+- [Summary statistics](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#summary-statistics)
+- [Linear model](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#linear-model)
+- [Visualizing data](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#visualizing-data)
+
 
 # Data Analyses: Bugs
 
