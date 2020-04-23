@@ -25,7 +25,9 @@ bug. Try to recreate the main features of the plot shown below.
 
 ## Load data
 
+```python
 url = https://raw.githubusercontent.com/luketudge/stats-tutorials/master/tutorials/data/bugs.csv
+```
 
 We save our url file into a variable. This file stores a table of data on the desire of subjects to kill a bug. Each row represents one bug, with the following columns:
 - Subject: An ID code for the person rating their desire to kill the bug
