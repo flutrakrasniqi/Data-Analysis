@@ -1,3 +1,8 @@
+# Contents
+- Load data
+- Preparing the data
+- Summary statistics
+
 # Data Analyses: Bugs
 
 A somewhat silly psychology experiment conducted in 2013 measured subjects’ reactions to
@@ -74,7 +79,7 @@ Before proceeding to analyze the data let’s first define our variables in term
 ```python
 predictor1 = 'Disgust'
 predictor2 = 'Fear'
-outcome = 'KillRating'.
+outcome = 'KillRating'
 ```
 
 This way, if in the future we want to make changes, we don’t have to find each place where the variables are written in the program to rewrite them.
