@@ -76,7 +76,8 @@ Before proceeding to analyze the data let’s first define our variables in term
 This way, if in the future we want to make changes, we don’t have to find each place where the variables are written in the program to rewrite them.
 As mentioned above the kill rating is supposed to depend on the category of the bug. So, we want to have a new column indicating the bugs category. 
 
-To assign each bug to a category, we will define a function that looks at the value of the disgust and fear column of the row and by combining them returns one of four possible categories (combinations):
+To assign each bug to a category, we will define a function that looks at the value of the disgust and fear column of the row and by combining them returns one of four possible categories (combinations). In other instances (e.g. there is a missing value in one column) the function returns `None`.
+
 ```python
 def label_bug(row):
   if row[predictor1] == 'low' and row[predictor2] == 'low' :
@@ -90,7 +91,6 @@ def label_bug(row):
   else:
       return None
 ```
-**YY** The value that we write after `return` keyword is the category for that row. Beside the four combination that are declare, the function return `None`.
 
 Now we want to apply this function to each row and save its results into new column called ‘bug_category’. The `.apply` function applies a function along an axis of the DataFrame. As arguments we specify:
 - `the function` which will be applied and 
