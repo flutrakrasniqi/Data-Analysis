@@ -100,7 +100,7 @@ df['bug_category'] = df.apply (label_bug, axis=1)
 ```
 Now we can also drop rows that have missing values in our new column since it doesn’t make much sense to keep a row that doesn’t contain the predictors value. However, statistically I am not sure if this is the right thing to do.
 
-`df.dropna()` removes the rows (specified by the argument: axis=0) that have missing values in one column (specified by: subset=[‘bug_category’]).
+`pandas`'s method `dropna()` removes the rows (specified by the argument: axis=0) that have missing values in one column (specified by: subset=[‘bug_category’]).
 
 ```python
 df = df.dropna(axis=0, subset=['bug_category'])
@@ -126,9 +126,9 @@ df
 ```
 ## Summary statistics
 
-Often one of the first steps when analyzing some new data is to get an idea of the spread or 'distribution' of the different values in each column. We might want to know what the lowest and highest values are, what the most common values are, and so on Summarizing multiple values in one number is also known as 'aggregating' the values. The aggregate() method of a pandas.DataFrame returns a new shorter data frame containing only aggregated values. The first argument to aggregate() specifies what function or functions to use to aggregate the data.
+Often one of the first steps when analyzing some new data is to get an idea of the spread or 'distribution' of the different values in each column. We might want to know what the lowest and highest values are, what the most common values are, and so on Summarizing multiple values in one number is also known as 'aggregating' the values. The `aggregate()` function of a `pandas.DataFrame` returns a new shorter data frame containing only aggregated values. The first argument to aggregate() specifies what function or functions to use to aggregate the data.
 
-If we want to apply multiple aggregation functions, then it is a little clearer to first gather the functions in a list variable, and then pass this list variable into the aggregate() method. 
+If we want to apply multiple aggregation functions, then it is a little clearer to first gather the functions in a list variable, and then pass this list variable into the `aggregate()` function. 
 ```python
 from statistics import median, mean, stdev
 summary_stats = [min, median, mean, stdev, max]
@@ -150,10 +150,15 @@ max      10.000000
 
 Since we want this information separately for each category of bug, we need a ’grouped summary’.
 
-pandas makes grouping our data pretty easy. The groupby() method groups the rows of a data frame according to the categories in one or more columns. The first argument is a list of column names to group by.
+`pandas` makes grouping our data pretty easy. The `groupby()` function groups the rows of a data frame according to the categories in one or more columns. The first argument is a list of column names to group by.
 
 ```python
 summary = df.groupby(['bug_category']).aggregate({outcome: summary_stats})
+```
+
+**YY** And now let's see the result:
+```
+summary	
 ```
 ```
 	                            KillRating
@@ -169,7 +174,7 @@ bug_category
 
 To model the relationship between our dependent variable/ outcome (kill rating) and independent variables (categories of bugs) we are going to use the linear regression model. The regression can only use numerical variable as its inputs data. Due to this, the categorical variables need to be encoded as dummy variables. Dummy coding encodes the categorical variables as 0 and 1 respectively if the observation does not or does belong to the group.
 
-This encoding can easily be done with pandas.get_dummies(), where the first argument specifies data of which to get dummy indicators.
+This encoding can easily be done with `pandas`'s function `get_dummies()`, where the first argument specifies data of which to get dummy indicators.
 
 In linear regression with categorical variables we should be careful of the Dummy Variable Trap. The Dummy Variable trap is a scenario in which the independent variables are multicollinear - a scenario in which two or more variables are highly correlated; in simple terms one variable can be predicted from the others. This can produce singularity of a model, meaning your model just won't work. 
 
@@ -179,7 +184,7 @@ Idea is to use dummy variable encoding with the argument drop_first=True; this w
 embarked_dummies=pandas.get_dummies(df.bug_category, drop_first=True)
 ```
 
-Now we join these dummy variables columns with the main dataset, using pandas.concat(). The first argument here is a list of datasets that we want to join, and the axis to concatenate along:
+Now we join these dummy variables columns with the main dataset, using `pandas.concat()`. The first argument here is a list of datasets that we want to join, and the axis to concatenate along:
 ```python
 df = pandas.concat([df, embarked_dummies], axis=1)
 ```
@@ -188,7 +193,6 @@ This is how our df looks now:
 ```python
 df
 ```
-
 ```
 Subject	Sex	Disgust	Fear	KillRating	bug_category		        2. Low Disgust and High Fear	3. High Disgust and Low Fear	4. High Disgust and High Fear	
 0	1	Female	low	low	6.0	1. Low Disgust and Low Fear	0				0			0
@@ -207,7 +211,7 @@ Subject	Sex	Disgust	Fear	KillRating	bug_category		        2. Low Disgust and Hig
 
 We can now continue to use them in our linear model. But first, we split our data frame into two sets. We will do this by using four fifths of the data for the model fitting (the so-called 'training' data), and reserving the remaining fifth as the imagined new data against which we will test the fitted models' predictions (the so-called 'test' data).
 
-We split the data by using train_test_split() from sklearn.model_selection. Here the first parameter represents the datasets you're selecting to use (predictors and outcome); the second parameter sets the size of the testing dataset, and about a third one: random_state, we set it to some fixed number since want reproducible results (if we do not use a randomstate , every time we make the split/run the program we might get a different set of train and test data points).
+We split the data by using `train_test_split()` from `sklearn.model_selection`. Here the first parameter represents the datasets you're selecting to use (predictors and outcome); the second parameter sets the size of the testing dataset, and about a third one: `random_state`, we set it to some fixed number since want reproducible results (if we do not use a randomstate , every time we make the split/run the program we might get a different set of train and test data points).
 ```python
 X = embarked_dummies
 y = df[outcome]
@@ -216,7 +220,7 @@ X_train,X_test,y_train,y_test = train_test_split(X, y, test_size = .20, random_s
 
 We have split our data into training and testing sets, and now is finally the time to fit the linear model to our data.
 
-With Scikit-Learn it is extremely straight forward to implement linear regression models, as all we really need to do is import the LinearRegression class, instantiate it, and call the fit() method along with our training data.
+With `Scikit-Learn` it is extremely straight forward to implement linear regression models, as all we really need to do is import the `LinearRegression` class, instantiate it, and call the `fit()` method along with our training data.
 ```python
 from sklearn.linear_model import LinearRegression
 reg = LinearRegression().fit(X_train,y_train)
@@ -232,7 +236,7 @@ Intercept:  5.691780821917809
 Coefficients:  [1.43321918 0.95107632 2.13216284]
 ```
 
-After we have trained our model, we can make predictions on the test data by using the method predict(). This accepts one argument; the new data concerning the predictors (in our case the data that we split to test out model):
+After we have trained our model, we can make predictions on the test data by using the function `predict()`. This accepts one argument; the new data concerning the predictors (in our case the data that we split to test out model):
 ```python
 y_pred=reg.predict(X_test)
 ```
@@ -243,6 +247,7 @@ Now we can compare the actual outcome’s values and the predicted ones:
 ```python
 df1 = pandas.DataFrame({'Actual': y_test, 'Predicted': y_pred})
 ```
+**YY** 
 ```
 df1
 ```
@@ -262,7 +267,7 @@ df1
 70 rows × 2 columns
 ```
 
-And we can also evaluate the performance of our model by finding the values of Mean squared error and R squared. Do to this, from sklearn.metrics, we import mean_squared_error, r2_score methods which as arguments take the actual outcome values and the predicted outcome values:
+And we can also evaluate the performance of our model by finding the values of Mean squared error and R squared. Do to this, from `sklearn.metrics`, we import `mean_squared_error`, `r2_score` functions which as arguments take the actual outcome values and the predicted outcome values:
 ```python
 from sklearn.metrics import mean_squared_error, r2_score
 print('Mean squared error: ', mean_squared_error(y_test, y_pred))
@@ -296,9 +301,9 @@ bp = sns.boxplot(x=predictor1, y=outcome, hue=predictor2, data=df,
                  palette = our_palette)
 ```
 
-To add the overlaid points that show the distribution of kill ratings for each category of bug, we use another method from seaborn called stripplot(). Except the common parameters, here we also specify:
+To add the overlaid points that show the distribution of kill ratings for each category of bug, we use another method from seaborn called `stripplot()`. Except the common parameters, here we also specify:
 
-> itter=True: to add some random noise (“jitter”) to the discrete values to make the distribution of those values clearer; <br /> dodge = True: to separate the strips for different hue levels along the categorical axis; and <br /> linewidth = 1: to add gray lines that frame the points, since were using the same palette as for the boxes.
+> `itter=True`: to add some random noise (“jitter”) to the discrete values to make the distribution of those values clearer; <br /> `dodge = True`: to separate the strips for different hue levels along the categorical axis; and <br /> `linewidth = 1`: to add gray lines that frame the points, since were using the same palette as for the boxes.
 ```python
 bp = sns.stripplot(x=predictor1, y=outcome, hue=predictor2, data=df,
                    jitter=True, dodge=True, linewidth=1, palette = our_palette)
@@ -314,7 +319,7 @@ bp.grid(True, which='major')
 bp.yaxis.set_major_locator(MultipleLocator(1))
 ```
 
-To specify the locator which is the argument that set_major_locator() accepts, we need to import MultipleLocator() from matplotlib.ticker. The parameter in MultipleLocator specifies after how many units a major will show up.
+To specify the locator which is the argument that `set_major_locator()` accepts, we need to import `MultipleLocator()` from matplotlib.ticker. The parameter in MultipleLocator specifies after how many units a major will show up.
 
 Other details that we can handle regarding the plot are the y axis label which would we clearer if it shows ‘Desire to kill’, and also the legend where we have doubled handles and labels.
 
@@ -328,10 +333,10 @@ To deal with the legend, we use pyplot as well but first we get the legend’s h
 handles, labels = bp.get_legend_handles_labels()
 ```
 
-Next, we use the legend method from pyplot to kind of build a new legend, where we specify:
->handles[0:2] – we only want the first 2 handles to show; labels[0:2] – we want only the first 2 labels to show; <br />
-loc=2 – we place the legend on the upper left corner; bbox_to_anchor=(x,y) – in conjunction with loc places the legend on x and y axis, giving a great degree of control for manual legend placement; <br />
-Frameon=False – to get rid of the legends frame; and title=predictor2.
+Next, we use the legend method from `pyplot` to kind of build a new legend, where we specify:
+>`handles[0:2]` – we only want the first 2 handles to show; labels[0:2] – we want only the first 2 labels to show; <br />
+`loc=2` – we place the legend on the upper left corner; bbox_to_anchor=(x,y) – in conjunction with loc places the legend on x and y axis giving a great degree of control for manual legend placement; <br />
+`Frameon=False` – to get rid of the legends frame; and title=predictor2.
 ```python
 lg = plt.legend(handles[0:2], labels[0:2], loc=2,
            bbox_to_anchor=(1, .5), frameon=False, title=predictor2)
