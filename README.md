@@ -156,11 +156,7 @@ Since we want this information separately for each category of bug, we need a â€
 
 ```python
 summary = df.groupby(['bug_category']).aggregate({outcome: summary_stats})
-```
-
-**YY** And now let's see the result:
-```
-summary	
+print(summary)
 ```
 ```
 	                            KillRating
