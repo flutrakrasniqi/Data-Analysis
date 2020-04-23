@@ -244,10 +244,7 @@ The y_pred is an array that contains all the predicted values for the input valu
 Now we can compare the actual outcome’s values and the predicted ones:
 ```python
 df1 = pandas.DataFrame({'Actual': y_test, 'Predicted': y_pred})
-```
-**YY** 
-```
-df1
+print(df1)
 ```
 ```
 	actual	Predicted
