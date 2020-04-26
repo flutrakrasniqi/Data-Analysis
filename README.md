@@ -346,5 +346,4 @@ Next, we use the legend method from `pyplot` to kind of build a new legend, wher
 lg = plt.legend(handles[0:2], labels[0:2], loc=2,
            bbox_to_anchor=(1, .5), frameon=False, title=predictor2)
 ```
-And this is our final result:
 ![](image/graph_final.png)
