@@ -1,11 +1,3 @@
-# Contents
-- [Load data](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#load-data)
-- [Preparing the data](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#preparing-the-data)
-- [Summary statistics](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#summary-statistics)
-- [Linear model](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#linear-model)
-- [Visualizing data](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#visualizing-data)
-
-
 # Data Analyses: Bugs
 
 A somewhat silly psychology experiment conducted in 2013 measured subjects’ reactions to
@@ -30,6 +22,14 @@ numerical summaries and produce a plot:
 bug as the predictor variables.
 - Boxplots with overlaid points showing the distribution of kill ratings for each category of
 bug. 
+
+# Contents
+- [Load data](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#load-data)
+- [Preparing the data](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#preparing-the-data)
+- [Summary statistics](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#summary-statistics)
+- [Linear model](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#linear-model)
+- [Visualizing data](https://github.com/flutrakrasniqi/flutra/blob/master/README.md#visualizing-data)
+
 
 ## Load data
 
@@ -221,6 +221,7 @@ We can now continue to use them in our linear model. But first, we split our dat
 
 We split the data by using `train_test_split()` from `sklearn.model_selection`. Here the first parameter represents the datasets we are selecting to use (predictors and outcome); the second parameter sets the size of the testing dataset, and about a third one: `random_state`, we set it to some fixed number since want reproducible results (if we do not use a randomstate , every time we make the split/run the program we might get a different set of train and test data points).
 ```python
+from sklearn.model_selection import train_test_split
 X = embarked_dummies
 y = df[outcome]
 X_train,X_test,y_train,y_test = train_test_split(X, y, test_size = .20, random_state=1)
@@ -272,7 +273,7 @@ print(df1)
 70 rows × 2 columns
 ```
 
-And we can also evaluate the performance of our model by finding the values of Mean squared error and R squared. Do to this, from `sklearn.metrics`, we import `mean_squared_error`, `r2_score` functions which as arguments take the actual outcome values and the predicted outcome values:
+And we can also evaluate the performance of our model by finding the values of Mean squared error and R squared. To do this, from `sklearn.metrics`, we import `mean_squared_error`, `r2_score` functions which as arguments take the actual outcome values and the predicted outcome values:
 ```python
 from sklearn.metrics import mean_squared_error, r2_score
 print('Mean squared error: ', mean_squared_error(y_test, y_pred))
@@ -291,6 +292,9 @@ To show the relationship between multiple variables in a dataset we also can use
 
 We can create box plots using seaborn's sns.boxplot method, but first we specify the size and the style we want our figure to have:
 ```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 plt.figure(figsize=(7,5))
 sns.set_style('darkgrid')
 ```
