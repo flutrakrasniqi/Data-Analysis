@@ -290,7 +290,7 @@ So in this model the average squared difference between the estimated values and
 
 To show the relationship between multiple variables in a dataset we also can use different visual representations. A box plot (or box-and-whisker plot) shows the distribution of quantitative data in a way that facilitates comparison between variables or across levels of a categorical variable. The box shows the quartiles of the dataset while the whiskers extend to show the rest of the distribution, except for points that are determined to be “outliers”.
 
-We can create box plots using seaborn's sns.boxplot method, but first we specify the size and the style we want our figure to have:
+We can create box plots using seaborn's sns.boxplot method, but first we specify the size and the style we want our figure to have. For the size we need matplotlib.pyplot library:
 ```python
 import seaborn as sns
 import matplotlib.pyplot as plt
