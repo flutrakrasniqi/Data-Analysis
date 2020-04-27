@@ -122,19 +122,19 @@ This is what df includes now:
 df
 ```
 ```
-	Subject	Sex	Disgust	Fear	KillRating
-0	1	Female	low	low	6.0
-1	3	Female	low	low	5.0
-2	4	Female	low	low	6.0
-3	5	Female	low	low	3.0
-4	6	Female	low	low	2.0
-...	...	...	...	...	...
-343	96	Male	high	high	10.0
-344	97	Female	high	high	10.0
-345	98	Female	high	high	10.0
-346	99	Female	high	high	10.0
-347	100	Female	high	high	3.0
-348 rows × 5 columns
+	Subject	Sex	Disgust	Fear	KillRating	bug_category
+0	1	Female	low	low	6.0		1. Low Disgust and Low Fear
+1	3	Female	low	low	5.0		1. Low Disgust and Low Fear
+2	4	Female	low	low	6.0		1. Low Disgust and Low Fear
+3	5	Female	low	low	3.0		1. Low Disgust and Low Fear
+4	6	Female	low	low	2.0		1. Low Disgust and Low Fear
+...	...	...	...	...	...		...
+343	96	Male	high	high	10.0		4. High Disgust and High Fear
+344	97	Female	high	high	10.0		4. High Disgust and High Fear
+345	98	Female	high	high	10.0		4. High Disgust and High Fear
+346	99	Female	high	high	10.0		4. High Disgust and High Fear
+347	100	Female	high	high	3.0		4. High Disgust and High Fear
+348 rows × 6 columns
 ```
 ## Summary statistics
 
@@ -290,7 +290,7 @@ So in this model the average squared difference between the estimated values and
 
 To show the relationship between multiple variables in a dataset we also can use different visual representations. A box plot (or box-and-whisker plot) shows the distribution of quantitative data in a way that facilitates comparison between variables or across levels of a categorical variable. The box shows the quartiles of the dataset while the whiskers extend to show the rest of the distribution, except for points that are determined to be “outliers”.
 
-We can create box plots using seaborn's sns.boxplot method, but first we specify the size and the style we want our figure to have. For the size we need matplotlib.pyplot library:
+We can create box plots using seaborn's sns.boxplot method, but first we specify the size and the style we want our figure to have:
 ```python
 import seaborn as sns
 import matplotlib.pyplot as plt
